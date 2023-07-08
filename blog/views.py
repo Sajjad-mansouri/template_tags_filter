@@ -17,4 +17,4 @@ class PostCreate(CreateView):
 	model=Post
 	template_name='blog/post-create.html'
 	success_url=reverse_lazy('post-list')
-	fields=['title','slug','author','text']
+	fields=['title','author','text']
