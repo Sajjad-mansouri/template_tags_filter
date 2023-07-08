@@ -1,0 +1,25 @@
+{%extends 'base.html'%}
+
+{%block title%}
+{%if object%}
+post:{{object}}
+{%elif object_list%}
+posts
+{%endif%}
+{%endblock%}
+
+{%block content%}
+
+{%if object%}
+<h1>{{object.title}}</h1>
+<p>author:{{object.author}}, created:{{object.created}} </p>
+<p>{{object.text}}</p>
+{%elif object_list%}
+{%for object in object_list%}
+<h1><a href="{%url 'post-detail' object.slug%}">{{object.title}}</a></h1>
+<p>author:{{object.author}}, created:{{object.created}} </p>
+<p>{{object.text}}</p>
+{%endfor%}
+{%endif%}
+
+{%endblock%}
