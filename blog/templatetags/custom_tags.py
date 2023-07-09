@@ -1,5 +1,6 @@
 from django import template
 from django.template.defaultfilters import stringfilter
+from django.utils.safestring import SafeString
 
 register=template.Library()
 
@@ -17,3 +18,11 @@ def add_x(value):
 def stringify_upper(value):
 	upper=value.upper()
 	return f'type of ({upper}) is {type(value)}'
+
+@register.filter
+def is_safe_string(value):
+	if isinstance(value,SafeString):
+		return f'({value}) is SafeString'
+	else:
+		return f'({value}) is not SafeString'
+
