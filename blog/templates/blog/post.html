@@ -17,6 +17,7 @@ posts
 {%elif object_list%}
 {%for object in object_list%}
 <h1><a href="{%url 'post-detail' object.slug%}">{{object.title}}</a></h1>
+<a href="{%url 'post-delete' object.slug %}">delete</a>
 <p>author:{{object.author}}, created:{{object.created}} </p>
 <p>{{object.text}}</p>
 {%endfor%}

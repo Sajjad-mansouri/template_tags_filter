@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView,DetailView,CreateView
+from django.views.generic import ListView,DetailView,CreateView,DeleteView
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 from .models import Post
@@ -25,3 +25,8 @@ class PostCreate(CreateView):
 		object.author=self.request.user
 		object.save()
 		return HttpResponseRedirect(self.success_url)
+
+class PostDelete(DeleteView):
+	model=Post
+	template_name='blog/post-delete.html'
+	success_url=reverse_lazy('post-list')
