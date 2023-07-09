@@ -1,4 +1,5 @@
 from django import template
+from django.template.defaultfilters import stringfilter
 
 register=template.Library()
 
@@ -9,3 +10,10 @@ def replace_arg(value,args):
 @register.filter(name='append_x')
 def add_x(value):
 	return f'{value}+x'
+
+
+@stringfilter
+@register.filter(name='upper')
+def stringify_upper(value):
+	upper=value.upper()
+	return f'type of ({upper}) is {type(value)}'
