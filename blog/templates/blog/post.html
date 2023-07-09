@@ -1,4 +1,5 @@
 {%extends 'base.html'%}
+{%load custom_tags%}
 
 {%block title%}
 {%if object%}
@@ -14,6 +15,10 @@ posts
 <h1>{{object.title}}</h1>
 <p>author:{{object.author}}, created:{{object.created}} </p>
 <p>{{object.text}}</p>
+<p>{{object.text|append_x}}</p>
+<p>{{object.text|replace_word:"this,changed"}}</p>
+
+
 {%elif object_list%}
 {%for object in object_list%}
 <h1><a href="{%url 'post-detail' object.slug%}">{{object.title}}</a></h1>
