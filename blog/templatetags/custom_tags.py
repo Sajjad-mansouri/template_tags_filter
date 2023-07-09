@@ -26,3 +26,18 @@ def is_safe_string(value):
 	else:
 		return f'({value}) is not SafeString'
 
+
+@register.filter
+def safe_to_normal(value):
+	value=f'word added to safestring:{value}'
+	return value
+
+
+
+
+
+@register.filter(is_safe=True)
+def safe_again(value):
+	value=f'word added to safestring:{value}'
+	return value
+
