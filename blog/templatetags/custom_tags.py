@@ -1,6 +1,7 @@
 from django import template
 from django.template.defaultfilters import stringfilter
-from django.utils.safestring import SafeString
+from django.utils.safestring import SafeString,mark_safe
+from django.utils.html import conditional_escape
 
 register=template.Library()
 
@@ -34,10 +35,27 @@ def safe_to_normal(value):
 
 
 
-
-
 @register.filter(is_safe=True)
 def safe_again(value):
 	value=f'word added to safestring:{value}'
 	return value
 
+@register.filter(needs_autoescape=True)
+def needs_autoescape(value,autoescape=True):
+  """
+  Escapes the given value, depending on the current auto-escaping state.
+  """
+  if autoescape:
+    return conditional_escape(value)
+  else:
+    return value
+
+@register.filter
+def without_needs_autoescape(value,autoescape=True):
+  """
+  Escapes the given value, depending on the current auto-escaping state.
+  """
+  if autoescape:
+    return conditional_escape(value)
+  else:
+    return value

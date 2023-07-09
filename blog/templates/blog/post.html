@@ -21,16 +21,41 @@ posts
 
 
 
-
+<!-- simple template filter -->
 <p>{{object.text|append_x}}</p>
 <p>{{object.text|upper}}</p>
 
+<!-- SafeString and normal string -->
 <p>{{object.text|is_safe_string}}</p>
 <p>{{object.text|safe|is_safe_string}}</p>
 
+<!-- is_safe=True flag -->
 <p>{{object.text|safe}}</p>
 <p>{{object.text|safe|safe_to_normal}}</p>
 <p>{{object.text|safe|safe_again}}</p>
+
+<!-- needs_autoscape -->
+<h1>autoescape is on</h1>
+<p>**needs_autoscape=False</p>
+<p>{{object.text|without_needs_autoescape}}</p>
+
+<p>**needs_autoscape=True**</p>
+
+<p>{{object.text|needs_autoescape}}</p>
+
+<h1>autoescape is off</h1>
+
+{% autoescape off %}
+<p>**needs_autoscape=False**</p>
+
+<p>{{object.text|without_needs_autoescape}}</p>
+<p>**needs_autoscape=True**</p>
+
+<p>{{object.text|needs_autoescape}}</p>
+
+
+{%endautoescape%}
+
 
 
 
