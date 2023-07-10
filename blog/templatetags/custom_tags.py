@@ -59,3 +59,14 @@ def without_needs_autoescape(value,autoescape=True):
     return conditional_escape(value)
   else:
     return value
+
+
+@register.filter(needs_autoescape=True)
+def cond_escape(value,autoescape=True):
+  """
+  Escapes the given value, depending on the current auto-escaping state.
+  """
+  if autoescape:
+    return conditional_escape(value)
+  else:
+    return value

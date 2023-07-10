@@ -45,17 +45,24 @@ posts
 
 <h1>autoescape is off</h1>
 
+
+<!-- **needs_autoscape=False**< -->
 {% autoescape off %}
-<p>**needs_autoscape=False**</p>
 
-<p>{{object.text|without_needs_autoescape}}</p>
-<p>**needs_autoscape=True**</p>
+	<p>{{object.text|without_needs_autoescape}}</p>
 
-<p>{{object.text|needs_autoescape}}</p>
+	<p>**needs_autoscape=True**</p>
+
+	<p>{{object.text|needs_autoescape}}</p>
 
 
 {%endautoescape%}
 
+
+<h2>combine safe and escape:</h2>
+<p>{{object.text|safe|escape}}</p>
+<p>{{object.text|escape|safe}}</p>
+<p>{{object.text|cond_escape}}</p>
 
 
 
