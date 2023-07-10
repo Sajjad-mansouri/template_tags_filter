@@ -13,6 +13,10 @@ class PostList(ListView):
 class PostDetail(DetailView):
 	model=Post
 	template_name='blog/post.html'
+	def get_context_data(self,**kwargs):
+		context=super().get_context_data(**kwargs)
+		context['posts']=Post.objects.all()
+		return context
 
 
 class PostCreate(CreateView):

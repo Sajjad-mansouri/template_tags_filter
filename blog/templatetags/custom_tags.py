@@ -93,3 +93,14 @@ def say_name(context):
 def current_time(context,format_string):
 	timezone=context['timezone']
 	return timezone.strftime(format_string)
+
+
+
+
+#inclusion tag
+
+@register.inclusion_tag('partials/recent-posts.html',takes_context=True)
+def recent_post(context):
+	return {
+		'posts':context['posts'].order_by('created')[:2]
+	}
