@@ -1,0 +1,13 @@
+{%extends 'base.html'%}
+{%load custom_tags %}
+
+{%block title%}
+introduce simple tag
+{%endblock%}
+
+{%block content%}
+<h1>these are some example of simple tags:</h1>
+<p>minusone templatetag: {%minusone 9%}</p>
+<p>{%say_name%}</p>
+
+{%endblock%}

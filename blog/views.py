@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView,DetailView,CreateView,DeleteView
+from django.views.generic import ListView,DetailView,CreateView,DeleteView,TemplateView
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 from .models import Post
@@ -30,3 +30,11 @@ class PostDelete(DeleteView):
 	model=Post
 	template_name='blog/post-delete.html'
 	success_url=reverse_lazy('post-list')
+
+
+class Simple(TemplateView):
+	template_name='blog/simple.html'
+	def get_context_data(self,**kwargs):
+		context=super().get_context_data(**kwargs)
+		context['name']='admin'
+		return context

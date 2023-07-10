@@ -5,6 +5,8 @@ from django.utils.html import conditional_escape
 
 register=template.Library()
 
+# template filters
+
 @register.filter(name='replace_word')
 def replace_arg(value,args):
 	arg1,arg2=args.split(',')
@@ -70,3 +72,16 @@ def cond_escape(value,autoescape=True):
     return conditional_escape(value)
   else:
     return value
+
+
+# template tag
+
+# simple tag
+
+#simple tag with lambda
+register.simple_tag(lambda x:x-1,name='minusone')
+
+#simple tag with takes_context
+@register.simple_tag(takes_context=True)
+def say_name(context):
+	return f'{context["name"]} is my name'
