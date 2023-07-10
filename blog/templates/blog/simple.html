@@ -9,5 +9,8 @@ introduce simple tag
 <h1>these are some example of simple tags:</h1>
 <p>minusone templatetag: {%minusone 9%}</p>
 <p>{%say_name%}</p>
+{%current_time '%Y-%m-%d' as my_time %}
+<p>date is : {{my_time}}</p>
+
 
 {%endblock%}

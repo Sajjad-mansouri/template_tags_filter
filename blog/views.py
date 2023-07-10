@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic import ListView,DetailView,CreateView,DeleteView,TemplateView
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
+from django.utils import timezone
 from .models import Post
 
 class PostList(ListView):
@@ -37,4 +38,5 @@ class Simple(TemplateView):
 	def get_context_data(self,**kwargs):
 		context=super().get_context_data(**kwargs)
 		context['name']='admin'
+		context['timezone']=timezone.now()
 		return context

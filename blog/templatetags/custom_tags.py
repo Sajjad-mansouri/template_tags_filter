@@ -2,6 +2,7 @@ from django import template
 from django.template.defaultfilters import stringfilter
 from django.utils.safestring import SafeString,mark_safe
 from django.utils.html import conditional_escape
+from datetime import datetime
 
 register=template.Library()
 
@@ -85,3 +86,10 @@ register.simple_tag(lambda x:x-1,name='minusone')
 @register.simple_tag(takes_context=True)
 def say_name(context):
 	return f'{context["name"]} is my name'
+
+
+#simple tag with takes_context another example
+@register.simple_tag(takes_context=True)
+def current_time(context,format_string):
+	timezone=context['timezone']
+	return timezone.strftime(format_string)
